@@ -14,7 +14,9 @@ class PredictiveDispatchEngine(
 
         val demand = demandAI.analyze(vehicleId)
 
-        return demand.map { d ->
+        val plans = mutableListOf<DispatchPlan>()
+
+        for (d in demand) {
 
             val currentStock = stockEngine.getStock(
                 productId = d.productId,
@@ -29,13 +31,19 @@ class PredictiveDispatchEngine(
                 else -> "HIGH"
             }
 
-            DispatchPlan(
+            val plan = DispatchPlan(
                 vehicleId = vehicleId,
                 productId = d.productId,
                 zoneId = d.zoneId,
                 recommendedLoad = max(deficit, 0.0),
                 priority = priority
             )
-        }.filter { it.recommendedLoad > 0 }
+
+            if (plan.recommendedLoad > 0) {
+                plans.add(plan)
+            }
+        }
+
+        return plans
     }
 }

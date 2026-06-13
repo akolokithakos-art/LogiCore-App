@@ -1,30 +1,34 @@
 package com.example.logicore.features.stock.domain
 
 import com.example.logicore.features.stock.data.StockRepository
+import com.example.logicore.features.tenant.core.TenantContext
 
 class StockEngine(
-    private val repo: StockRepository
+    private val repo: StockRepository,
+    private val tenantContext: TenantContext
 ) {
 
-    suspend fun canSell(
-        productId: Int,
-        vehicleId: Int,
-        qty: Double
-    ): Boolean {
-        val available = repo.getStock(productId, vehicleId)
+    private fun tenant(): String =
+        tenantContext.getTenant() ?: throw IllegalStateException("No tenant")
+
+    suspend fun getStock(productId: Int, locationId: Int): Double {
+        return repo.getStock(
+            tenantId = tenant(),
+            productId = productId,
+            locationId = locationId
+        )
+    }
+
+    suspend fun canSell(productId: Int, vehicleId: Int, qty: Double): Boolean {
+        val available = getStock(productId, vehicleId)
         return available >= qty
     }
 
-    suspend fun registerSale(
-        productId: Int,
-        vehicleId: Int,
-        qty: Double
-    ): Boolean {
-
-        val allowed = canSell(productId, vehicleId, qty)
-        if (!allowed) return false
+    suspend fun registerSale(productId: Int, vehicleId: Int, qty: Double): Boolean {
+        if (!canSell(productId, vehicleId, qty)) return false
 
         repo.moveStock(
+            tenantId = tenant(),
             productId = productId,
             from = vehicleId,
             to = null,
@@ -33,35 +37,5 @@ class StockEngine(
         )
 
         return true
-    }
-
-    suspend fun loadVehicle(
-        productId: Int,
-        warehouseId: Int,
-        vehicleId: Int,
-        qty: Double
-    ) {
-        repo.moveStock(
-            productId = productId,
-            from = warehouseId,
-            to = vehicleId,
-            qty = qty,
-            type = "LOAD"
-        )
-    }
-
-    suspend fun returnStock(
-        productId: Int,
-        vehicleId: Int,
-        warehouseId: Int,
-        qty: Double
-    ) {
-        repo.moveStock(
-            productId = productId,
-            from = vehicleId,
-            to = warehouseId,
-            qty = qty,
-            type = "RETURN"
-        )
     }
 }

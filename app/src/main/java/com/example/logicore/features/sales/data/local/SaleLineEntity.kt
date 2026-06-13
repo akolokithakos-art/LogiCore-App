@@ -5,8 +5,11 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "sale_lines")
 data class SaleLineEntity(
+
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
+
+    val tenantId: String,
 
     val saleId: Int,
 

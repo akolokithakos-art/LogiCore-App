@@ -7,7 +7,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.logicore.features.products.data.local.ProductEntity
 
 @Composable
 fun ProductScreen(
@@ -18,11 +17,18 @@ fun ProductScreen(
     var name by remember { mutableStateOf("") }
     var price by remember { mutableStateOf("") }
 
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
 
-        Text("PRODUCTS", style = MaterialTheme.typography.titleLarge)
+        Text(
+            text = "PRODUCTS",
+            style = MaterialTheme.typography.titleLarge
+        )
 
-        Spacer(Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
         TextField(
             value = name,
@@ -36,26 +42,34 @@ fun ProductScreen(
             label = { Text("Price") }
         )
 
-        Button(onClick = {
-            viewModel.addProduct(
-                ProductEntity(
+        Button(
+            onClick = {
+
+                viewModel.addProduct(
                     code = "P${System.currentTimeMillis()}",
                     barcode = "",
                     name = name,
                     price = price.toDoubleOrNull() ?: 0.0,
                     stock = 0.0
                 )
-            )
-        }) {
+
+                name = ""
+                price = ""
+            }
+        ) {
             Text("Add Product")
         }
 
-        Spacer(Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
         LazyColumn {
             items(products) { product ->
-                Text("${product.name} - ${product.price}")
-                Divider()
+
+                Text(
+                    text = "${product.name} - ${product.price}"
+                )
+
+                HorizontalDivider()
             }
         }
     }

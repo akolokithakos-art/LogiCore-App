@@ -9,6 +9,8 @@ data class StockMovementEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+    val tenantId: String,
+
     val productId: Int,
 
     val fromLocationId: Int?, // null = εισαγωγή

@@ -6,10 +6,13 @@ import kotlinx.coroutines.flow.StateFlow
 
 class VehicleStateStore {
 
-    private val _states = MutableStateFlow<Map<Int, VehicleState>>(emptyMap())
+    private val _states =
+        MutableStateFlow<Map<Int, VehicleState>>(emptyMap())
+
     val states: StateFlow<Map<Int, VehicleState>> = _states
 
     fun update(state: VehicleState) {
+
         _states.value = _states.value.toMutableMap().apply {
             put(state.vehicleId, state)
         }

@@ -5,10 +5,13 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "sales")
 data class SaleEntity(
+
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
-    val customerId: Int
+    val tenantId: String,
+
+    val customerId: Int,
 
     val total: Double = 0.0,
 

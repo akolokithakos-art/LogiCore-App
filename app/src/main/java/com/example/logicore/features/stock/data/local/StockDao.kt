@@ -14,11 +14,20 @@ interface StockDao {
     @Insert
     suspend fun insertLocation(location: StockLocationEntity)
 
-    @Query("SELECT * FROM stock_movements ORDER BY createdAt DESC")
-    fun getMovements(): Flow<List<StockMovementEntity>>
+    @Query("""
+        SELECT * 
+        FROM stock_movements
+        WHERE tenantId = :tenantId
+        ORDER BY createdAt DESC
+    """)
+    fun getMovements(tenantId: String): Flow<List<StockMovementEntity>>
 
-    @Query("SELECT * FROM stock_movements")
-    suspend fun getMovementsList(): List<StockMovementEntity>
+    @Query("""
+        SELECT * 
+        FROM stock_movements
+        WHERE tenantId = :tenantId
+    """)
+    suspend fun getMovementsList(tenantId: String): List<StockMovementEntity>
 
     @Query("""
         SELECT COALESCE(SUM(
@@ -29,9 +38,11 @@ interface StockDao {
             END
         ), 0)
         FROM stock_movements
-        WHERE productId = :productId
+        WHERE tenantId = :tenantId
+          AND productId = :productId
     """)
     suspend fun getStockBalance(
+        tenantId: String,
         productId: Int,
         locationId: Int
     ): Double

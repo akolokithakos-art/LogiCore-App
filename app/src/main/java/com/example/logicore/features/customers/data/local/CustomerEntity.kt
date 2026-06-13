@@ -9,6 +9,8 @@ data class CustomerEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+    val tenantId: String,
+
     val code: String = "",
 
     val name: String,

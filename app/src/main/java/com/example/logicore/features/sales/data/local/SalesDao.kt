@@ -14,9 +14,19 @@ interface SalesDao {
     @Insert
     suspend fun addLine(line: SaleLineEntity)
 
-    @Query("SELECT * FROM sales ORDER BY createdAt DESC")
-    fun getSales(): Flow<List<SaleEntity>>
+    @Query("""
+        SELECT * FROM sales
+        WHERE tenantId = :tenantId
+        ORDER BY createdAt DESC
+    """)
+    fun getSales(tenantId: String): Flow<List<SaleEntity>>
 
-    @Query("SELECT * FROM sale_lines WHERE saleId = :saleId")
-    fun getLines(saleId: Int): Flow<List<SaleLineEntity>>
+    @Query("""
+        SELECT * FROM sale_lines
+        WHERE saleId = :saleId AND tenantId = :tenantId
+    """)
+    fun getLines(
+        saleId: Int,
+        tenantId: String
+    ): Flow<List<SaleLineEntity>>
 }

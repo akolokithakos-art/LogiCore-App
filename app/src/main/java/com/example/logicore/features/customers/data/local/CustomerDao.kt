@@ -11,9 +11,19 @@ interface CustomerDao {
     @Insert
     suspend fun insert(customer: CustomerEntity)
 
-    @Query("SELECT * FROM customers ORDER BY name ASC")
-    fun getAll(): Flow<List<CustomerEntity>>
+    @Query("""
+        SELECT * FROM customers
+        WHERE tenantId = :tenantId
+        ORDER BY name ASC
+    """)
+    fun getAll(tenantId: String): Flow<List<CustomerEntity>>
 
-    @Query("SELECT * FROM customers WHERE id = :id")
-    suspend fun getById(id: Int): CustomerEntity?
+    @Query("""
+        SELECT * FROM customers
+        WHERE id = :id AND tenantId = :tenantId
+    """)
+    suspend fun getById(
+        id: Int,
+        tenantId: String
+    ): CustomerEntity?
 }

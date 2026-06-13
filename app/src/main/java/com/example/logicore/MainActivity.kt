@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import com.example.logicore.navigation.AppNavGraph
 import com.example.logicore.ui.theme.LogicoreTheme
 
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

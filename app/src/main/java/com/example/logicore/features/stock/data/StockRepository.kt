@@ -8,6 +8,7 @@ class StockRepository(
 ) {
 
     suspend fun moveStock(
+        tenantId: String,
         productId: Int,
         from: Int?,
         to: Int?,
@@ -16,6 +17,7 @@ class StockRepository(
     ) {
         dao.insertMovement(
             StockMovementEntity(
+                tenantId = tenantId,
                 productId = productId,
                 fromLocationId = from,
                 toLocationId = to,
@@ -25,19 +27,19 @@ class StockRepository(
         )
     }
 
-    suspend fun getSalesMovementsByVehicle(vehicleId: Int): List<StockMovementEntity> {
-        return dao.getMovementsList()
-            .filter { it.fromLocationId == vehicleId && it.type == "SALE" }
-    }
-
-    suspend fun getAllMovements(): List<StockMovementEntity> {
-        return dao.getMovementsList()
+    suspend fun getAllMovements(tenantId: String): List<StockMovementEntity> {
+        return dao.getMovementsList(tenantId)
     }
 
     suspend fun getStock(
+        tenantId: String,
         productId: Int,
         locationId: Int
     ): Double {
-        return dao.getStockBalance(productId, locationId)
+        return dao.getStockBalance(
+            tenantId = tenantId,
+            productId = productId,
+            locationId = locationId
+        )
     }
 }

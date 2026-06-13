@@ -9,6 +9,8 @@ data class StockLocationEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+    val tenantId: String,
+
     val name: String,
 
     val type: String // WAREHOUSE / VEHICLE / BRANCH
