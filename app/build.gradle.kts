@@ -38,8 +38,8 @@ dependencies {
 
     implementation(platform(libs.androidx.compose.bom))
 
-    // ✅ MAPLIBRE (IMPORTANT FIX)
-    implementation("org.maplibre.gl:android-sdk:10.2.0")
+    // ✅ MAPLIBRE (FIXED VERSION FOR org.maplibre.android PACKAGE)
+    implementation("org.maplibre.gl:android-sdk:11.5.1")
 
     // Core Android
     implementation(libs.androidx.core.ktx)

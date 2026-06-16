@@ -23,8 +23,7 @@ class AutoLoadOptimizer(
         val movements = repo.getAllMovements(tenant())
 
         val sales = movements.filter {
-            it.type == "SALE" &&
-                    it.fromLocationId == vehicleId
+            it.type == "SALE" && it.fromLocationId == vehicleId
         }
 
         val grouped = sales.groupBy { it.productId }

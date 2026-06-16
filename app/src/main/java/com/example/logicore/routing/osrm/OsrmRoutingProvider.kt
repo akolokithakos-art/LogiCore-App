@@ -8,7 +8,7 @@ class OsrmRoutingProvider {
         fromLat: Double,
         fromLng: Double,
         toLat: Double,
-        toLng: Double
+        toLng: Double,
     ): RouteResult {
 
         val coords = "$fromLng,$fromLat;$toLng,$toLat"

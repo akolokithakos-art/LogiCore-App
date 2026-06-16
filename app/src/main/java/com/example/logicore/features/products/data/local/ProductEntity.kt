@@ -19,5 +19,5 @@ data class ProductEntity(
 
     val price: Double,
 
-    val stock: Double
+    val stock: Double,
 )

@@ -1,9 +1,9 @@
-package com.logicore.routing.engine
+package com.example.logicore.routing.engine
 
-import com.logicore.routing.provider.RoutingProvider
+import com.example.logicore.routing.osrm.OsrmRoutingProvider
 
 class RoutingEngineImpl(
-    private val provider: OsrmRoutingProvider
+    private val provider: OsrmRoutingProvider,
 ) : RoutingEngine {
 
     override suspend fun getRoute(

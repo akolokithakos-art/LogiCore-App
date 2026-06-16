@@ -1,9 +1,9 @@
 package com.example.logicore.dispatch.engine
 
-import com.logicore.core.model.Driver
-import com.logicore.core.model.Order
+import com.example.logicore.core.model.Driver
+import com.example.logicore.core.model.Order
 import com.example.logicore.routing.engine.RoutingEngine
-import com.logicore.eta.engine.EtaEngine
+import com.example.logicore.eta.engine.EtaEngine
 import com.example.logicore.dispatch.engine.DriverStateTracker
 data class Assignment(
     val orderId: String,

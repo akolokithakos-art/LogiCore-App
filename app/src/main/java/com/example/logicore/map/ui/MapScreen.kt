@@ -1,4 +1,4 @@
-package com.logicore.map.ui
+package com.example.logicore.map.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

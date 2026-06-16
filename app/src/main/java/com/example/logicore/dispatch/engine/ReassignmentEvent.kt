@@ -1,4 +1,4 @@
-package com.logicore.dispatch.engine
+package com.example.logicore.dispatch.engine
 
 data class ReassignmentEvent(
     val orderId: String,

@@ -1,4 +1,4 @@
-package com.logicore.core.model
+package com.example.logicore.core.model
 
 data class Order(
     val id: String,

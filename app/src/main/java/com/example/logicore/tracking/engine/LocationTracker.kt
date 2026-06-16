@@ -1,4 +1,4 @@
-package com.logicore.tracking.engine
+package com.example.logicore.tracking.engine
 
 import android.annotation.SuppressLint
 import android.content.Context

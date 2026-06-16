@@ -1,6 +1,6 @@
-package com.logicore.dispatch.engine
+package com.example.logicore.dispatch.engine
 
-import com.logicore.core.model.Order
+import com.example.logicore.core.model.Order
 
 class SlaRiskEvaluator {
 

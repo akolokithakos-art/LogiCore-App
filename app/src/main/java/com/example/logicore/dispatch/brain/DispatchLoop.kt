@@ -1,7 +1,7 @@
-package com.logicore.dispatch.brain
+package com.example.logicore.dispatch.brain
 
-import com.logicore.core.model.Driver
-import com.logicore.core.model.Order
+import com.example.logicore.core.model.Driver
+import com.example.logicore.core.model.Order
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

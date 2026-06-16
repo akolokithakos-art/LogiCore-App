@@ -25,5 +25,5 @@ data class CustomerEntity(
 
     val balance: Double = 0.0,
 
-    val active: Boolean = true
+    val active: Boolean = true,
 )

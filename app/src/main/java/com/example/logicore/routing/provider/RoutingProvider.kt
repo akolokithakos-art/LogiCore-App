@@ -1,6 +1,6 @@
-package com.logicore.routing.provider
+package com.example.logicore.routing.provider
 
-import com.logicore.routing.engine.RouteResult
+import com.example.logicore.routing.engine.RouteResult
 
 interface RoutingProvider {
 

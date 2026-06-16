@@ -1,7 +1,7 @@
-package com.logicore.dispatch.brain
+package com.example.logicore.dispatch.brain
 
 import com.example.logicore.dispatch.engine.DriverStateTracker
-import com.logicore.core.model.Driver
+import com.example.logicore.core.model.Driver
 
 class ReassignHook(
     private val driverStateTracker: DriverStateTracker

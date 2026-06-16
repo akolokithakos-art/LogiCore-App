@@ -15,6 +15,31 @@ interface SalesDao {
     suspend fun addLine(line: SaleLineEntity)
 
     @Query("""
+    SELECT *
+    FROM sale_lines
+    WHERE tenantId = :tenantId
+""")
+    suspend fun getAllLines(
+        tenantId: String
+    ): List<SaleLineEntity>
+
+    @Query("""
+    SELECT *
+    FROM sale_lines
+    WHERE tenantId = :tenantId
+      AND saleId IN (
+          SELECT id
+          FROM sales
+          WHERE tenantId = :tenantId
+            AND createdAt >= :fromTimestamp
+      )
+""")
+    suspend fun getLinesSince(
+        tenantId: String,
+        fromTimestamp: Long
+    ): List<SaleLineEntity>
+
+    @Query("""
         SELECT * FROM sales
         WHERE tenantId = :tenantId
         ORDER BY createdAt DESC

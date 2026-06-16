@@ -1,4 +1,4 @@
-package com.logicore.dispatch.engine
+package com.example.logicore.dispatch.engine
 
 data class SlaResult(
     val isAtRisk: Boolean,
