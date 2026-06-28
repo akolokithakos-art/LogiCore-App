@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "532700003576",
+    "project_id": "logicore-dev",
+    "storage_bucket": "logicore-dev.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532700003576:android:5b6afdc3d4977d776fcf0d",
+        "android_client_info": {
+          "package_name": "com.example.logicore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2CB9mRdorZ9UFj5hP1eu-yFYjL-XUQx8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
