@@ -2,10 +2,29 @@ package com.example.logicore.features.warehouse.events.model
 
 sealed class WarehouseEvent {
 
+    data class StockReceived(
+        val orderId: Long,
+        val productId: Int,
+        val quantity: Double,
+        val warehouseId: Int
+    ) : WarehouseEvent()
+
+    data class StockConsumed(
+        val productId: Int,
+        val quantity: Double
+    ) : WarehouseEvent()
+
     data class StockChanged(
         val productId: Int,
         val locationId: Int,
         val delta: Double
+    ) : WarehouseEvent()
+
+    data class StockAnomalyDetected(
+        val productId: Int,
+        val severity: Double,
+        val expected: Double,
+        val actual: Double
     ) : WarehouseEvent()
 
     data class ForecastGenerated(

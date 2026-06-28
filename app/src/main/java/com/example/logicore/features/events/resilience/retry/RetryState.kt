@@ -1,4 +1,8 @@
 package com.example.logicore.features.events.resilience.retry
 
-class RetryState {
-}
+data class RetryState(
+    val eventId: String,
+    val projection: String,
+    var attempt: Int = 0,
+    var lastError: String? = null
+)

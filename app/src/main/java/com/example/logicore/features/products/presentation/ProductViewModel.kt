@@ -44,6 +44,7 @@ class ProductViewModel(
 
             repository.addProduct(
                 ProductEntity(
+                    id = java.util.UUID.randomUUID().toString(),
                     tenantId = tenantId,
                     code = code,
                     barcode = barcode,

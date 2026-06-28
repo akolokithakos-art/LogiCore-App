@@ -1,4 +1,7 @@
 package com.example.logicore.features.rl.action
 
-class DispatchAction {
-}
+data class DispatchAction(
+
+    val driverId: String,
+    val vehicleId: String
+)

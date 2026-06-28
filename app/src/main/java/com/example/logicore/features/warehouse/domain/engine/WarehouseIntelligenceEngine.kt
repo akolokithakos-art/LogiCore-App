@@ -1,13 +1,15 @@
 package com.example.logicore.features.warehouse.domain.engine
 
 import com.example.logicore.features.warehouse.domain.model.PurchaseOrder
+import com.example.logicore.features.warehouse.domain.repository.WarehouseDemandRepository
+import com.example.logicore.features.warehouse.domain.repository.WarehouseStockRepository
 
 class WarehouseIntelligenceEngine(
     private val demandRepo: WarehouseDemandRepository,
     private val stockRepo: WarehouseStockRepository
 ) {
 
-    fun generateOrders(): List<PurchaseOrder> {
+    suspend fun generateOrders(): List<PurchaseOrder> {
 
         val demands = demandRepo.getAggregatedDemand()
 

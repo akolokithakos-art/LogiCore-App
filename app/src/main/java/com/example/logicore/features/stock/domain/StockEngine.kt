@@ -38,4 +38,26 @@ class StockEngine(
 
         return true
     }
+
+    suspend fun addStock(productId: Int, warehouseId: Int, qty: Double) {
+        repo.moveStock(
+            tenantId = tenant(),
+            productId = productId,
+            from = null,
+            to = warehouseId,
+            qty = qty,
+            type = "ADJUSTMENT_IN"
+        )
+    }
+
+    suspend fun removeStock(productId: Int, qty: Double) {
+        repo.moveStock(
+            tenantId = tenant(),
+            productId = productId,
+            from = 0, // Default warehouse or location
+            to = null,
+            qty = qty,
+            type = "ADJUSTMENT_OUT"
+        )
+    }
 }

@@ -2,6 +2,7 @@ package com.example.logicore.features.stock.domain
 
 import com.example.logicore.features.stock.domain.model.LoadSuggestion
 import com.example.logicore.features.stock.domain.model.StockAlert
+import com.example.logicore.features.stock.domain.model.StockIntelligenceReport
 
 class StockIntelligenceEngine(
     private val forecastEngine: StockForecastEngine,

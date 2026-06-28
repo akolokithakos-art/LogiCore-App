@@ -1,4 +1,8 @@
 package com.example.logicore.core.audit
 
-class TenantDocument {
+interface TenantDocument {
+
+    val tenantId: String
+
+    val audit: AuditMetadata
 }

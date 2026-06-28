@@ -1,4 +1,11 @@
 package com.example.logicore.features.sla.domain
 
-class OptimizedAssignment {
-}
+data class OptimizedAssignment(
+
+    val driverId: String,
+    val vehicleId: String,
+
+    val totalScore: Double,
+    val estimatedEta: Double,
+    val slaRisk: Double
+)

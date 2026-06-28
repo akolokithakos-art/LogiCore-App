@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.logicore" />
+                  <option name="mobileSdkAppId" value="1:532700003576:android:5b6afdc3d4977d776fcf0d" />
+                  <option name="projectId" value="logicore-dev" />
+                  <option name="projectNumber" value="532700003576" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

@@ -1,20 +1,38 @@
 package com.example.logicore.features.firebase.broadcast
 
-import com.example.logicore.features.firebase.model.RemoteDispatchState
+import com.example.logicore.features.firebase.model.RemoteVehicleState
+import java.util.concurrent.CopyOnWriteArrayList
 
 class DispatchBroadcastEngine {
 
     private val listeners =
-        mutableListOf<(RemoteDispatchState) -> Unit>()
+        CopyOnWriteArrayList<(RemoteVehicleState) -> Unit>()
 
-    fun subscribe(listener: (RemoteDispatchState) -> Unit) {
+    fun subscribe(
+        listener: (RemoteVehicleState) -> Unit
+    ) {
         listeners.add(listener)
     }
 
-    fun emit(state: RemoteDispatchState) {
+    fun unsubscribe(
+        listener: (RemoteVehicleState) -> Unit
+    ) {
+        listeners.remove(listener)
+    }
 
-        listeners.forEach {
-            it(state)
+    fun clear() {
+        listeners.clear()
+    }
+
+    fun emit(
+        state: RemoteVehicleState
+    ) {
+        listeners.forEach { listener ->
+            listener(state)
         }
+    }
+
+    fun listenerCount(): Int {
+        return listeners.size
     }
 }

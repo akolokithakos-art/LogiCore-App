@@ -7,6 +7,7 @@ interface AddressGeocoder {
     suspend fun geocode(
         street: String,
         number: String,
-        city: String
+        city: String,
+        postalCode: String = ""
     ): GeoPoint?
 }

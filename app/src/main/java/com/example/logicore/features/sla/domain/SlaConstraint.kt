@@ -1,4 +1,12 @@
 package com.example.logicore.features.sla.domain
 
-class SlaConstraint {
-}
+data class SlaConstraint(
+
+    val tenantId: String,
+
+    val orderId: String,
+
+    val maxDeliveryMinutes: Int,
+
+    val priority: Int
+)

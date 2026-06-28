@@ -1,4 +1,14 @@
 package com.example.logicore.features.firebase.model
 
-class RemoteVehicleState {
-}
+data class RemoteVehicleState(
+
+    val metadata: SyncMetadata,
+
+    val position: VehiclePosition,
+
+    val capacity: VehicleCapacity,
+
+    val assignment: DispatchAssignment? = null,
+
+    val status: VehicleStatus = VehicleStatus.AVAILABLE
+)

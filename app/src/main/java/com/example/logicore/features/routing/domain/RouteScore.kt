@@ -1,4 +1,12 @@
 package com.example.logicore.features.routing.domain
 
-class RouteScore {
-}
+data class RouteScore(
+
+    val distanceKm: Double,
+
+    val etaMinutes: Double,
+
+    val trafficMultiplier: Double,
+
+    val riskScore: Double
+)

@@ -12,10 +12,12 @@ class NominatimGeocoder : AddressGeocoder {
     override suspend fun geocode(
         street: String,
         number: String,
-        city: String
+        city: String,
+        postalCode: String
     ): GeoPoint? = withContext(Dispatchers.IO) {
         try {
-            val query = URLEncoder.encode("$street $number, $city", "UTF-8")
+            val queryStr = "$street $number, $city $postalCode".trim()
+            val query = URLEncoder.encode(queryStr, "UTF-8")
             val url = "https://nominatim.openstreetmap.org/search?q=$query&format=json&limit=1"
             
             val connection = URL(url).openConnection()

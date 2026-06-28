@@ -33,16 +33,6 @@ interface PurchaseOrderDao {
     )
 
     @Query("""
-    UPDATE purchase_orders
-    SET status = :status
-    WHERE id = :orderId
-""")
-    suspend fun updateStatus(
-        orderId: Int,
-        status: String
-    )
-
-    @Query("""
         SELECT * 
         FROM purchase_order_lines
         WHERE purchaseOrderId = :orderId

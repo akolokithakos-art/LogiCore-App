@@ -1,4 +1,12 @@
 package com.example.logicore.features.firebase.auth
 
-class AuthState {
+sealed interface AuthState {
+
+    data object Loading : AuthState
+
+    data object LoggedOut : AuthState
+
+    data class LoggedIn(
+        val session: FirebaseSession
+    ) : AuthState
 }

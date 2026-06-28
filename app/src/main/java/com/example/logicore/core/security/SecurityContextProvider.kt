@@ -1,4 +1,6 @@
 package com.example.logicore.core.security
 
-class SecurityContextProvider {
+interface SecurityContextProvider {
+
+    suspend fun current(): SecurityContext?
 }

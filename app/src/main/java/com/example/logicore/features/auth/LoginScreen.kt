@@ -7,12 +7,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 
+import com.example.logicore.features.auth.model.UserRole
+
 @Composable
 fun LoginScreen(
-    onLoginSuccess: () -> Unit
+    onLoginSuccess: (UserRole) -> Unit
 ) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var selectedRole by remember { mutableStateOf(UserRole.ADMIN) }
+    var expanded by remember { mutableStateOf(false) }
 
     Scaffold { padding ->
 
@@ -49,8 +53,34 @@ fun LoginScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
+            Text("Select Role (Mock):")
+            Box {
+                OutlinedButton(
+                    onClick = { expanded = true },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(selectedRole.name)
+                }
+                DropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false }
+                ) {
+                    UserRole.entries.forEach { role ->
+                        DropdownMenuItem(
+                            text = { Text(role.name) },
+                            onClick = {
+                                selectedRole = role
+                                expanded = false
+                            }
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
             Button(
-                onClick = onLoginSuccess,
+                onClick = { onLoginSuccess(selectedRole) },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Login")

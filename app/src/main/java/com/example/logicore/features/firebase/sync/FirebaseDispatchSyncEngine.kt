@@ -1,12 +1,12 @@
 package com.example.logicore.features.firebase.sync
 
-import com.example.logicore.features.firebase.model.RemoteDispatchState
+import com.example.logicore.features.firebase.model.RemoteVehicleState
 
 class FirebaseDispatchSyncEngine {
 
     // private val db = FirebaseFirestore.getInstance()
 
-    fun pushState(state: RemoteDispatchState) {
+    fun pushState(state: RemoteVehicleState) {
 
         // db.collection("tenants")
         //     .document(state.tenantId)
@@ -18,14 +18,14 @@ class FirebaseDispatchSyncEngine {
 
     fun subscribe(
         tenantId: String,
-        onUpdate: (RemoteDispatchState) -> Unit
+        onUpdate: (RemoteVehicleState) -> Unit
     ) {
 
         // db.collection("tenants")
         //     .document(tenantId)
         //     .collection("dispatch_states")
         //     .addSnapshotListener { snapshot, _ ->
-        //         snapshot?.toObjects(RemoteDispatchState::class.java)
+        //         snapshot?.toObjects(RemoteVehicleState::class.java)
         //             ?.forEach { onUpdate(it) }
         //     }
     }

@@ -1,4 +1,5 @@
 package com.example.logicore.features.ml.tflite
 
-class ModelOutput {
-}
+data class ModelOutput(
+    val predictedDemand: Float
+)

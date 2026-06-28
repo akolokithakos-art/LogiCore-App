@@ -1,4 +1,12 @@
 package com.example.logicore.features.events.projections
 
-class EventProjection {
+import com.example.logicore.features.events.data.local.EventStoreEntity
+
+interface EventProjection {
+
+    fun supports(event: EventStoreEntity): Boolean
+
+    suspend fun handle(
+        event: EventStoreEntity
+    )
 }

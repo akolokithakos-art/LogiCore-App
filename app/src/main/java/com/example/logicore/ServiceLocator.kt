@@ -12,13 +12,18 @@ import com.example.logicore.features.events.resilience.InMemoryDeadLetterQueue
 import com.example.logicore.features.events.resilience.ResilientProjectionExecutor
 import com.example.logicore.features.events.resilience.retry.RetryPolicy
 import com.example.logicore.features.events.resilience.retry.RetryScheduler
-import com.example.logicore.features.stock.data.local.AppDatabase
+import com.example.logicore.features.core.database.AppDatabase
+import com.example.logicore.features.fleet.data.local.DriverDao
+import com.example.logicore.features.firebase.repository.FirebaseRouteRepository
+import com.example.logicore.features.firebase.firestore.FirestoreFirebaseRouteRepository
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 
 object ServiceLocator {
 
     private var database: AppDatabase? = null
+    private var projectionBootstrap: ProjectionBootstrap? = null
 
     private fun getDatabase(context: Context): AppDatabase {
         return database ?: synchronized(this) {
@@ -36,12 +41,28 @@ object ServiceLocator {
 
     private val gson = Gson()
 
+    fun driverDao(context: Context): DriverDao {
+        return getDatabase(context).driverDao()
+    }
+
+    fun firebaseRouteRepository(): FirebaseRouteRepository {
+        return FirestoreFirebaseRouteRepository(FirebaseFirestore.getInstance())
+    }
+
     fun projectionBootstrap(context: Context): ProjectionBootstrap {
+        return projectionBootstrap ?: synchronized(this) {
+            val instance = createProjectionBootstrap(context)
+            projectionBootstrap = instance
+            instance
+        }
+    }
+
+    private fun createProjectionBootstrap(context: Context): ProjectionBootstrap {
         val db = getDatabase(context)
         val dlq = InMemoryDeadLetterQueue()
         val retryPolicy = RetryPolicy()
         
-        // Lateinit or lazy to avoid circular dependency
+        // Lateinit to resolve circular dependency with RetryScheduler
         lateinit var executor: ResilientProjectionExecutor
         
         val stockProjection = StockProjection(db.stockProjectionDao(), gson)

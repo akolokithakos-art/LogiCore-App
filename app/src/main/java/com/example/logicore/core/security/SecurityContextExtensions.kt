@@ -1,4 +1,8 @@
 package com.example.logicore.core.security
 
-class SecurityContextExtensions {
+fun SecurityContext.hasPermission(
+    permission: Permission
+): Boolean {
+
+    return permissions.contains(permission)
 }

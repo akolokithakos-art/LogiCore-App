@@ -1,4 +1,6 @@
 package com.example.logicore.core.audit
 
-class AuditableEntity {
+interface AuditableEntity {
+
+    val audit: AuditMetadata
 }

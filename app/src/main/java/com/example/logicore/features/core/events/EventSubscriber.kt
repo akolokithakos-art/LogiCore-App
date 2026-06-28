@@ -1,4 +1,5 @@
 package com.example.logicore.features.core.events
 
-class EventSubscriber {
+interface EventSubscriber<T> {
+    suspend fun handle(event: T)
 }

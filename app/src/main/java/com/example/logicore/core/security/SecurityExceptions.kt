@@ -1,4 +1,17 @@
 package com.example.logicore.core.security
 
-class SecurityExceptions {
-}
+open class SecurityException(
+    message: String
+) : RuntimeException(message)
+
+class AccessDeniedException(
+    message: String
+) : SecurityException(message)
+
+class TenantViolationException(
+    message: String
+) : SecurityException(message)
+
+class UnauthenticatedException(
+    message: String
+) : SecurityException(message)

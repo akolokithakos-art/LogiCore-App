@@ -1,4 +1,16 @@
 package com.example.logicore.features.firebase.model
 
-class VehicleStatus {
+enum class VehicleStatus {
+
+    AVAILABLE,
+
+    DISPATCHED,
+
+    LOADING,
+
+    UNLOADING,
+
+    OFFLINE,
+
+    MAINTENANCE
 }
